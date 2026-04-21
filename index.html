@@ -939,7 +939,10 @@
     <div class="page__head">
       <div class="page__label">ООО Правовая фирма «ВЕД»</div>
       <h1 class="page__title">Оставить заявку на услугу</h1>
-      <p class="page__sub">Опишите вашу ситуацию — специалист свяжется с вами в течение рабочего дня.</p>
+      <p class="page__sub">Опишите вашу ситуацию — специалист свяжется с вами в течение 2 часов.</p>
+      <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; opacity: 0.8;">
+        * В пределах ближайшего рабочего дня по омскому времени
+      </p>
     </div>
 
     <div class="wizard" id="wizard">
@@ -973,8 +976,20 @@
           <div class="cat-grid" id="catGrid"></div>
         </div>
 
-        <!-- Step 2: Description -->
+        <!-- Step 2: Details -->
         <div class="wizard__step" id="s2">
+          <div class="step__title">Детали обращения</div>
+          <div class="step__hint">Опишите вашу ситуацию — специалист свяжется с вами в течение 2 часов.</div>
+
+          <div class="field">
+            <div class="field__label">Описание ситуации</div>
+            <textarea class="input" id="fDesc" rows="4"
+              placeholder="Например: хочу купить квартиру, нужна проверка документов..."></textarea>
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 8px;">
+              * В пределах ближайшего рабочего дня по омскому времени
+            </div>
+          </div>
+
           <div class="field" style="margin-bottom:0">
             <label class="field__label">Документы <span class="field__opt">(необязательно)</span></label>
             <div class="drop" id="drop">
@@ -1221,7 +1236,7 @@
         if (el) el.classList.add('active');
 
         if (n === 2) {
-          // fDesc deleted
+          $('fDesc').value = st.desc;
         }
         if (n === 3) {
           $('fName').value = st.name;
@@ -1241,7 +1256,7 @@
 
       /* ── Collect current step ───────────────────────────────────── */
       function collect(n) {
-        if (n === 2) { /* fDesc deleted */ }
+        if (n === 2) { st.desc = $('fDesc').value; }
         if (n === 3) {
           st.name = $('fName').value.trim();
           st.phone = $('fPhone').value.trim();
@@ -1396,7 +1411,7 @@
       });
 
       /* ── Step 2 textarea ────────────────────────────────────────── */
-      // fDesc deleted
+      $('fDesc').addEventListener('input', function () { st.desc = this.value; });
 
       /* ── Submit ─────────────────────────────────────────────────── */
       function submitForm() {
