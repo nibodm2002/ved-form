@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Оставить заявку — ООО Правовая фирма «ВЕД»</title>
+  <meta name="description" content="Оставьте заявку на юридическую услугу. ООО Правовая фирма «ВЕД», Омск." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/x-icon" href="https://fved.ru/wp-content/uploads/2021/07/favicon.ico" />
+  <link rel="shortcut icon" href="https://fved.ru/wp-content/uploads/2021/07/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Tokens ─────────────────────────────────────────────── */
+    :root {
+      /* Бренд */
+      --navy:        #25315E;
+      --navy-light:  #2e3d72;
+      /* Фон страницы — намного темнее бренда, создаёт контраст */
+      --bg:          #07101f;
+      --bg-mid:      #0d1929;
+      /* Акцент с оригинала */
+      --accent:      #a1b8d5;
+      --accent-pale: rgba(161,184,213,.10);
+      /* Форма */
+      --white:       #ffffff;
+      --surface:     #f4f6fb;
+      --border:      #dde4f0;
+      /* Текст */
+      --text:        #1a202c;
+      --text-mid:    #4a5568;
+      --text-muted:  #8896ab;
+      /* Служебные */
+      --error:       #e53e3e;
+      --success:     #38a169;
+      --font:        'Josefin Sans', 'Inter', system-ui, sans-serif;
+      --r:           8px;
+      --r-sm:        5px;
+      --r-pill:      9999px;
+      --t:           200ms ease;
+    }
+
+    /* ── Reset ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
+    input, textarea, select { font: inherit; }
+
+    /* ── Header — чуть светлее фона, отделяется ─────────────── */
+    .header {
+      background: var(--navy);
+      padding: 0 24px;
+    }
+    .header__inner {
+      max-width: 900px;
+      margin: 0 auto;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .header__logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+    .header__logo-img-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .header__logo-img-box img {
+      height: 40px;
+      width: auto;
+      display: block;
+      /* Тёмно-синий логотип → белый на синем фоне шапки */
+      filter: brightness(0) invert(1);
+    }
+    .header__logo-fallback {
+      font-family: var(--font);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .header__logo-divider {
+      width: 1px; height: 36px;
+      background: rgba(255,255,255,.15);
+    }
+    .header__logo-meta { display: flex; flex-direction: column; gap: 3px; }
+    .header__logo-name {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .header__logo-sub {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,.45);
+      line-height: 1;
+    }
+    .header__contacts {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 5px;
+    }
+    .header__phone {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.80);
+      transition: var(--t);
+      white-space: nowrap;
+    }
+    .header__phone:hover { color: var(--accent); }
+    @media (max-width: 580px) {
+      .header__contacts,
+      .header__logo-divider,
+      .header__logo-meta { display: none; }
+      .header__inner { height: 62px; }
+    }
+
+    /* ── Page — глубокий тёмный фон с лёгким свечением ─────── */
+    .page {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 52px 16px 72px;
+      background:
+        radial-gradient(ellipse 700px 500px at 50% 30%,
+          rgba(37,49,94,.55) 0%, transparent 70%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-mid) 100%);
+    }
+
+    /* ── Page headline ──────────────────────────────────────── */
+    .page__head {
+      text-align: center;
+      max-width: 520px;
+      margin-bottom: 36px;
+    }
+    .page__label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .page__label::before, .page__label::after {
+      content: '';
+      width: 20px; height: 1px;
+      background: var(--accent);
+      opacity: .6;
+    }
+    .page__title {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .page__sub {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,.50);
+      line-height: 1.65;
+      font-weight: 400;
+    }
+
+    /* ── Wizard — белая карточка, сильно выделяется ─────────── */
+    .wizard {
+      width: 100%;
+      max-width: 680px;
+      background: var(--white);
+      border-radius: 16px;
+      /* Акцентная полоса сверху */
+      border-top: 4px solid var(--accent);
+      /* Мощная тень + тонкое голубое свечение */
+      box-shadow:
+        0 0 0 1px rgba(161,184,213,.18),
+        0 24px 64px rgba(0,0,0,.55),
+        0 0 80px rgba(37,49,94,.30);
+      overflow: hidden;
+    }
+
+    /* ── Wizard head (прогресс) — бренд-синий ───────────────── */
+    .wizard__head {
+      background: var(--navy);
+      padding: 18px 32px 0;
+    }
+    .wizard__prog-track {
+      height: 2px;
+      background: rgba(255,255,255,.12);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+    .wizard__prog-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width .5s cubic-bezier(.4,0,.2,1);
+    }
+    .wizard__meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 16px;
+    }
+    .wizard__step-text {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.5);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .wizard__step-name {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: .02em;
+    }
+    .wizard__dots { display: flex; gap: 6px; }
+    .wizard__dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.18);
+      transition: var(--t);
+    }
+    .wizard__dot.done   { background: rgba(161,184,213,.55); }
+    .wizard__dot.active { background: var(--accent); transform: scale(1.3); }
+
+    /* ── Step body ──────────────────────────────────────────── */
+    .wizard__body { padding: 32px 36px 24px; }
+    .wizard__step { display: none; }
+    .wizard__step.active { display: block; }
+    .step__title {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+      letter-spacing: .02em;
+    }
+    .step__hint {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* ── Category grid ──────────────────────────────────────── */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .cat-btn {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 13px 15px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r);
+      background: var(--white);
+      text-align: left;
+      cursor: pointer;
+      transition: var(--t);
+    }
+    .cat-btn:hover {
+      border-color: var(--accent);
+      background: var(--accent-pale);
+    }
+    /* Выбранная категория: заливка navy, текст белый */
+    .cat-btn.sel {
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+    .cat-btn.sel .cat-btn__name { color: #ffffff; }
+    .cat-btn__ico { font-size: 1.25rem; line-height: 1; flex-shrink: 0; }
+    .cat-btn__name {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.35;
+    }
+    .cat-btn--wide { grid-column: 1 / -1; }
+
+    /* ── Form fields ────────────────────────────────────────── */
+    .field { margin-bottom: 18px; }
+    .field:last-child { margin-bottom: 0; }
+    .field__label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 7px;
+    }
+    .field__opt {
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+    }
+    .field__ctrl {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-sm);
+      font-size: 0.9375rem;
+      color: var(--text);
+      background: var(--surface);
+      outline: none;
+      transition: border-color var(--t), box-shadow var(--t);
+      appearance: none;
+    }
+    .field__ctrl:focus {
+      background: var(--white);
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(37,49,94,.08);
+    }
+    .field__ctrl.err { border-color: var(--error); }
+    textarea.field__ctrl { resize: vertical; min-height: 110px; }
+    .field__err {
+      font-size: 0.8125rem;
+      color: var(--error);
+      margin-top: 5px;
+      display: none;
+    }
+    .field__err.show { display: block; }
+
+    /* Contact method toggle */
+    .method-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .method-btn {
+      flex: 0 0 auto;
+      padding: 10px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-sm);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text-mid);
+      background: var(--surface);
+      cursor: pointer;
+      text-align: center;
+      transition: var(--t);
+      white-space: nowrap;
+    }
+    .method-btn:hover { border-color: var(--accent); color: var(--navy); }
+    .method-btn.sel {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: #ffffff;
+    }
+
+    /* ── File upload ────────────────────────────────────────── */
+    .drop {
+      border: 2px dashed var(--border);
+      border-radius: var(--r);
+      padding: 36px 20px;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      transition: var(--t);
+      background: var(--surface);
+    }
+    .drop:hover, .drop.over {
+      border-color: var(--navy);
+      background: var(--accent-pale);
+    }
+    .drop input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .drop__icon { font-size: 2rem; margin-bottom: 10px; }
+    .drop__text { font-size: 0.9375rem; color: var(--text-mid); margin-bottom: 4px; }
+    .drop__text strong { color: var(--navy); }
+    .drop__sub { font-size: 0.8125rem; color: var(--text-muted); }
+
+    .file-list { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+    .file-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 13px;
+      background: var(--surface);
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+    }
+    .file-row__name { flex: 1; font-size: 0.875rem; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .file-row__size { font-size: 0.8125rem; color: var(--text-muted); flex-shrink: 0; }
+    .file-row__del {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: rgba(229,62,62,.10);
+      color: var(--error);
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: var(--t);
+    }
+    .file-row__del:hover { background: var(--error); color: #fff; }
+
+    /* ── Consents ───────────────────────────────────────────── */
+    .consent-list { display: flex; flex-direction: column; gap: 14px; }
+    .consent { display: flex; align-items: flex-start; gap: 12px; }
+    .consent__box {
+      width: 18px; height: 18px;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      cursor: pointer;
+      appearance: none;
+      background: var(--surface);
+      transition: var(--t);
+      position: relative;
+    }
+    .consent__box:checked { background: var(--navy); border-color: var(--navy); }
+    .consent__box:checked::after {
+      content: '';
+      position: absolute;
+      left: 4px; top: 1px;
+      width: 6px; height: 10px;
+      border: 2px solid #fff;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg);
+    }
+    .consent__text { font-size: 0.875rem; color: var(--text-mid); line-height: 1.55; }
+    .consent__text a { color: var(--navy); text-decoration: underline; text-underline-offset: 2px; }
+    .consent__text a:hover { text-decoration-color: var(--accent); }
+
+    /* ── Navigation ─────────────────────────────────────────── */
+    .wizard__foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 16px 36px 28px;
+      border-top: 1px solid var(--border);
+    }
+    .wizard__foot-left { display: flex; gap: 8px; align-items: center; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 12px 28px;
+      border-radius: var(--r-pill);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      transition: var(--t);
+      white-space: nowrap;
+    }
+    /* Основная — navy заливка */
+    .btn--primary {
+      background: var(--navy);
+      color: #ffffff;
+      border: 2px solid var(--navy);
+    }
+    .btn--primary:hover:not(:disabled) {
+      background: var(--navy-light);
+      border-color: var(--navy-light);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(37,49,94,.35);
+    }
+    .btn--primary:disabled { opacity: .38; cursor: not-allowed; }
+    /* Вторичная */
+    .btn--ghost {
+      background: transparent;
+      color: var(--text-muted);
+      border: 2px solid var(--border);
+    }
+    .btn--ghost:hover { border-color: var(--navy); color: var(--navy); }
+    .btn--skip {
+      background: none;
+      border: none;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      letter-spacing: .04em;
+      padding: 4px;
+      cursor: pointer;
+      transition: var(--t);
+    }
+    .btn--skip:hover { color: var(--navy); }
+
+    /* ── Success ────────────────────────────────────────────── */
+    .success { display: none; padding: 52px 36px 48px; text-align: center; }
+    .success.show { display: block; }
+    .success__circle {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: rgba(56,161,105,.10);
+      border: 2px solid rgba(56,161,105,.30);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; margin: 0 auto 24px;
+    }
+    .success__title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+    .success__text {
+      font-size: 0.9375rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      max-width: 380px;
+      margin: 0 auto 24px;
+    }
+    .success__card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--r);
+      padding: 18px 22px;
+      font-size: 0.875rem;
+      color: var(--text-mid);
+      max-width: 380px;
+      margin: 0 auto 28px;
+      text-align: left;
+      line-height: 1.8;
+    }
+    .success__card strong { color: var(--navy); }
+    .success__id {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* ── Toast ──────────────────────────────────────────────── */
+    .toast {
+      position: fixed;
+      bottom: 24px; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--error);
+      color: #fff;
+      padding: 13px 24px;
+      border-radius: var(--r-pill);
+      font-size: 0.875rem;
+      font-weight: 600;
+      box-shadow: 0 8px 32px rgba(229,62,62,.40);
+      z-index: 999;
+      transition: transform .3s ease;
+      max-width: 90vw;
+      text-align: center;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    .footer {
+      background: var(--bg);
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding: 22px 24px;
+    }
+    .footer__inner {
+      max-width: 680px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .footer__copy { font-size: 0.8125rem; color: rgba(255,255,255,.25); }
+    .footer__links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .footer__link { font-size: 0.8125rem; color: rgba(255,255,255,.35); transition: var(--t); }
+    .footer__link:hover { color: var(--accent); }
+
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 560px) {
+      .wizard__head  { padding: 16px 20px 0; }
+      .wizard__body  { padding: 24px 20px 18px; }
+      .wizard__foot  { padding: 14px 20px 24px; flex-wrap: wrap; }
+      .cat-grid      { grid-template-columns: 1fr; }
+      .success       { padding: 40px 20px 36px; }
+      .method-btn    { min-width: 76px; font-size: 0.75rem; padding: 9px 8px; }
+      .page          { padding: 32px 12px 52px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Header ──────────────────────────────────────────────── -->
+<header class="header">
+  <div class="header__inner">
+    <a href="https://fved.ru" target="_blank" rel="noopener" class="header__logo-wrap">
+      <div class="header__logo-img-box">
+        <img
+          src="https://fved.ru/wp-content/uploads/2021/07/Logo_s.svg"
+          alt="ООО Правовая фирма ВЕД"
+          onerror="this.style.display='none';document.getElementById('logoFallback').style.display='block'"
+        />
+        <span id="logoFallback" class="header__logo-fallback" style="display:none;">ВЕД</span>
+      </div>
+      <div class="header__logo-divider"></div>
+      <div class="header__logo-meta">
+        <span class="header__logo-name">Правовая фирма «ВЕД»</span>
+        <span class="header__logo-sub">Юридические услуги · Омск</span>
+      </div>
+    </a>
+    <div class="header__contacts">
+      <a class="header__phone" href="tel:+73812220009">+7 (3812) 22-00-09</a>
+      <a class="header__phone" href="tel:+73812256670">+7 (3812) 25-66-70</a>
+    </div>
+  </div>
+</header>
+
+<!-- ─── Page ─────────────────────────────────────────────────── -->
+<main class="page">
+
+  <div class="page__head">
+    <div class="page__label">ООО Правовая фирма «ВЕД»</div>
+    <h1 class="page__title">Оставить заявку на услугу</h1>
+    <p class="page__sub">Опишите вашу ситуацию — специалист свяжется с вами в течение рабочего дня.</p>
+  </div>
+
+  <div class="wizard" id="wizard">
+
+    <!-- Head / Progress -->
+    <div class="wizard__head">
+      <div class="wizard__prog-track">
+        <div class="wizard__prog-fill" id="progFill" style="width:20%"></div>
+      </div>
+      <div class="wizard__meta">
+        <div>
+          <div class="wizard__step-text" id="metaStep">Шаг 1 из 5</div>
+          <div class="wizard__step-name" id="metaName">Выберите направление</div>
+        </div>
+        <div class="wizard__dots" id="dots">
+          <span class="wizard__dot active"></span>
+          <span class="wizard__dot"></span>
+          <span class="wizard__dot"></span>
+          <span class="wizard__dot"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="wizard__body">
+
+      <!-- Step 1: Category -->
+      <div class="wizard__step active" id="s1">
+        <div class="step__title">Категория дела</div>
+        <div class="step__hint">Выберите, с каким вопросом вы обращаетесь</div>
+        <div class="cat-grid" id="catGrid"></div>
+      </div>
+
+      <!-- Step 2: Description -->
+      <div class="wizard__step" id="s2">
+        <div class="field" style="margin-bottom:0">
+          <label class="field__label">Документы <span class="field__opt">(необязательно)</span></label>
+          <div class="drop" id="drop">
+            <input type="file" id="fileInput" multiple
+              accept=".pdf,.doc,.docx,.xlsx,.jpg,.jpeg,.png,.heic" />
+            <div class="drop__icon">📎</div>
+            <div class="drop__text">Перетащите файлы сюда или <strong>нажмите для выбора</strong></div>
+            <div class="drop__sub">PDF, DOCX, XLSX, JPG, PNG, HEIC · до 20 МБ · не более 10 файлов</div>
+          </div>
+          <div class="file-list" id="fileList"></div>
+        </div>
+      </div>
+
+      <!-- Step 3: Contacts (was s5) -->
+      <div class="wizard__step" id="s3">
+        <div class="step__title">Ваши контакты</div>
+        <div class="step__hint">Как специалисту с вами связаться?</div>
+        <div class="field">
+          <label class="field__label" for="fName">Имя *</label>
+          <input class="field__ctrl" type="text" id="fName" placeholder="Как к вам обращаться" autocomplete="given-name" />
+          <div class="field__err" id="fNameErr">Введите ваше имя</div>
+        </div>
+        <div class="field">
+          <label class="field__label" for="fPhone">Телефон *</label>
+          <input class="field__ctrl" type="tel" id="fPhone" placeholder="+7 (___) ___-__-__" autocomplete="tel" />
+          <div class="field__err" id="fPhoneErr">Введите корректный номер</div>
+        </div>
+        <div class="field">
+          <label class="field__label" for="fEmail">
+            E-mail <span class="field__opt">(необязательно — для подтверждения заявки)</span>
+          </label>
+          <input class="field__ctrl" type="email" id="fEmail" placeholder="your@email.ru" autocomplete="email" />
+          <div class="field__err" id="fEmailErr">Укажите e-mail или выберите другой способ связи</div>
+        </div>
+        <div class="field">
+          <label class="field__label">Предпочтительный способ связи</label>
+          <div class="method-row">
+            <button type="button" class="method-btn sel" data-m="phone">📞 Звонок</button>
+            <button type="button" class="method-btn" data-m="whatsapp">💬 WhatsApp</button>
+            <button type="button" class="method-btn" data-m="telegram">✈️ Telegram</button>
+            <button type="button" class="method-btn" data-m="email">✉️ E-mail</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4: Consents (was s6) -->
+      <div class="wizard__step" id="s4">
+        <div class="step__title">Согласия</div>
+        <div class="step__hint">Прочитайте и подтвердите перед отправкой</div>
+        <div class="consent-list">
+          <label class="consent">
+            <input type="checkbox" class="consent__box" id="c1" />
+            <span class="consent__text">
+              Я даю согласие на обработку моих персональных данных в соответствии с Федеральным законом №&nbsp;152-ФЗ
+            </span>
+          </label>
+          <label class="consent">
+            <input type="checkbox" class="consent__box" id="c2" />
+            <span class="consent__text">
+              Я ознакомлен(а) и согласен(а) с
+              <a href="https://fved.ru/wp-content/uploads/2025/06/1.-Политика-обработки-ПД-ООО-ПФ-ВЕД-2025.pdf"
+                 target="_blank" rel="noopener">Политикой обработки персональных данных</a>
+            </span>
+          </label>
+          <label class="consent">
+            <input type="checkbox" class="consent__box" id="c3" />
+            <span class="consent__text">
+              Я согласен(а) получать информационные и рекламные материалы от Правовой фирмы «ВЕД»
+              <span style="color:var(--text-muted)">(необязательно)</span>
+            </span>
+          </label>
+        </div>
+      </div>
+
+    </div><!-- /body -->
+
+    <!-- Success -->
+    <div class="success" id="success">
+      <div class="success__circle">✓</div>
+      <div class="success__id" id="successId"></div>
+      <div class="success__title">Заявка принята!</div>
+      <div class="success__text">
+        Специалист получил вашу заявку и свяжется с вами в течение рабочего дня.
+      </div>
+      <div class="success__card" id="successCard"></div>
+      <a class="btn btn--ghost" href="https://fved.ru" target="_blank" rel="noopener">
+        Сайт фирмы «ВЕД»
+      </a>
+    </div>
+
+    <!-- Footer nav -->
+    <div class="wizard__foot" id="wizFoot">
+      <div class="wizard__foot-left">
+        <button class="btn btn--ghost" id="btnBack" style="display:none">← Назад</button>
+        <button class="btn--skip" id="btnSkip" style="display:none">Пропустить</button>
+      </div>
+      <button class="btn btn--primary" id="btnNext" disabled>Далее →</button>
+    </div>
+
+  </div><!-- /wizard -->
+
+</main>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- ─── Footer ───────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer__inner">
+    <span class="footer__copy">© 2026 ООО Правовая фирма «ВЕД», г. Омск</span>
+    <div class="footer__links">
+      <a class="footer__link"
+         href="https://fved.ru/wp-content/uploads/2025/06/1.-Политика-обработки-ПД-ООО-ПФ-ВЕД-2025.pdf"
+         target="_blank" rel="noopener">Политика ПД</a>
+      <a class="footer__link"
+         href="https://fved.ru/wp-content/uploads/2025/06/Условия-запреты-распространения-персональных-данных-.pdf"
+         target="_blank" rel="noopener">Условия распространения</a>
+      <a class="footer__link" href="https://fved.ru" target="_blank" rel="noopener">fved.ru</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── Script ───────────────────────────────────────────────── -->
+<script>
+(function () {
+  'use strict';
+
+  /* ── Categories (источник правды — categories.conf на сервере) ── */
+  const CATS = [
+    { id: 1, name: 'Проверка квартиры перед покупкой',       ico: '🏠' },
+    { id: 2, name: 'Сопровождение сделки с недвижимостью',   ico: '🏗️' },
+  ];
+
+  const STEP_NAMES = [
+    'Выберите направление',
+    'Детали обращения',
+    'Ваши контакты',
+    'Согласия и отправка',
+  ];
+
+  const SKIPPABLE = new Set([2]);
+
+  /* ── State ─────────────────────────────────────────────────── */
+  let st = {
+    step: 1,
+    catId: null,
+    desc: '',
+    files: [],
+    name: '',
+    phone: '',
+    email: '',
+    method: 'phone',
+    c1: false, c2: false, c3: false,
+    utm: {},
+  };
+
+  // Restore session (без файлов)
+  try {
+    const s = sessionStorage.getItem('ved_app');
+    if (s) { const p = JSON.parse(s); p.files = []; Object.assign(st, p); }
+  } catch {}
+
+  function save() {
+    try { sessionStorage.setItem('ved_app', JSON.stringify({ ...st, files: [] })); } catch {}
+  }
+
+  /* ── DOM ────────────────────────────────────────────────────── */
+  const $ = id => document.getElementById(id);
+  const progFill  = $('progFill');
+  const metaStep  = $('metaStep');
+  const metaName  = $('metaName');
+  const dotsEl    = $('dots').querySelectorAll('.wizard__dot');
+  const btnBack   = $('btnBack');
+  const btnNext   = $('btnNext');
+  const btnSkip   = $('btnSkip');
+  const wizFoot   = $('wizFoot');
+  const successEl = $('success');
+  const successCard = $('successCard');
+  const successId   = $('successId');
+  const toast     = $('toast');
+
+  /* ── Toast ──────────────────────────────────────────────────── */
+  let toastTimer;
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 4500);
+  }
+
+  /* ── Render categories ──────────────────────────────────────── */
+  function renderCats() {
+    const grid = $('catGrid');
+    grid.innerHTML = '';
+    CATS.forEach(c => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'cat-btn' + (c.id === 7 ? ' cat-btn--wide' : '') + (st.catId === c.id ? ' sel' : '');
+      btn.innerHTML = `<span class="cat-btn__ico">${c.ico}</span><span class="cat-btn__name">${c.name}</span>`;
+      btn.addEventListener('click', () => {
+        st.catId = c.id;
+        renderCats();
+        updateNav();
+        save();
+      });
+      grid.appendChild(btn);
+    });
+  }
+
+  /* ── Update nav / progress ──────────────────────────────────── */
+  function updateNav() {
+    const n = st.step;
+
+    progFill.style.width = (n / 4 * 100) + '%';
+    metaStep.textContent = `Шаг ${n} из 4`;
+    metaName.textContent = STEP_NAMES[n - 1];
+
+    dotsEl.forEach((d, i) => {
+      d.classList.remove('active', 'done');
+      if (i + 1 < n) d.classList.add('done');
+      if (i + 1 === n) d.classList.add('active');
+    });
+
+    btnBack.style.display = n > 1 ? '' : 'none';
+    btnSkip.style.display = SKIPPABLE.has(n) ? '' : 'none';
+    btnNext.textContent   = n === 4 ? 'Отправить заявку' : 'Далее →';
+    btnNext.disabled      = !canGo(n);
+
+
+  }
+
+  function canGo(n) {
+    if (n === 1) return !!st.catId;
+    if (n === 2) return true;
+    if (n === 3) return st.name.length > 0;
+    if (n === 4) return st.c1 && st.c2;
+    return false;
+  }
+
+  /* ── Show step ──────────────────────────────────────────────── */
+  function showStep(n) {
+    document.querySelectorAll('.wizard__step').forEach(el => el.classList.remove('active'));
+    const el = document.getElementById('s' + n);
+    if (el) el.classList.add('active');
+
+    if (n === 2) {
+      $('fDesc').value = st.desc;
+    }
+    if (n === 3) {
+      $('fName').value  = st.name;
+      $('fPhone').value = st.phone;
+      $('fEmail').value = st.email;
+      document.querySelectorAll('.method-btn[data-m]').forEach(b => {
+        b.classList.toggle('sel', b.dataset.m === st.method);
+      });
+    }
+    if (n === 4) {
+      $('c1').checked = st.c1;
+      $('c2').checked = st.c2;
+      $('c3').checked = st.c3;
+    }
+    updateNav();
+  }
+
+  /* ── Collect current step ───────────────────────────────────── */
+  function collect(n) {
+    if (n === 2) { st.desc = $('fDesc').value; }
+    if (n === 3) {
+      st.name  = $('fName').value.trim();
+      st.phone = $('fPhone').value.trim();
+      st.email = $('fEmail').value.trim();
+    }
+    if (n === 4) { st.c1 = $('c1').checked; st.c2 = $('c2').checked; st.c3 = $('c3').checked; }
+  }
+
+  /* ── Nav buttons ────────────────────────────────────────────── */
+  btnNext.addEventListener('click', () => {
+    if (!canGo(st.step)) return;
+    collect(st.step);
+
+    // Доп. валидация шага 3: способ связи vs заполненные поля
+    if (st.step === 3) {
+      const phoneOk = st.phone.replace(/\D/g, '').length === 11;
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(st.email);
+      const phoneMethod = ['phone', 'whatsapp', 'telegram'].includes(st.method);
+
+      if (phoneMethod && !phoneOk) {
+        $('fPhoneErr').textContent = 'Укажите номер телефона или выберите другой способ связи';
+        $('fPhoneErr').classList.add('show');
+        $('fPhone').focus();
+        return;
+      }
+      if (st.method === 'email' && !emailOk) {
+        $('fEmailErr').classList.add('show');
+        $('fEmail').focus();
+        return;
+      }
+    }
+
+    if (st.step === 4) { submitForm(); return; }
+    st.step++;
+    showStep(st.step);
+    save();
+  });
+
+  btnBack.addEventListener('click', () => {
+    collect(st.step);
+    st.step--;
+    showStep(st.step);
+    save();
+  });
+
+  btnSkip.addEventListener('click', () => {
+    collect(st.step);
+    st.step++;
+    showStep(st.step);
+    save();
+  });
+
+  /* ── Step 5 live validation ─────────────────────────────────── */
+  $('fName').addEventListener('input', function () {
+    st.name = this.value.trim();
+    $('fNameErr').classList.remove('show');
+    updateNav();
+  });
+  // Телефон: +7 предзаполняется, маска +7 (XXX) XXX-XX-XX
+  $('fPhone').addEventListener('focus', function () {
+    if (!this.value) this.value = '+7 ';
+  });
+  $('fPhone').addEventListener('blur', function () {
+    if (this.value === '+7 ' || this.value === '+7') this.value = '';
+  });
+  $('fPhone').addEventListener('input', function () {
+    let raw = this.value;
+    // Вытащить все цифры
+    let digits = raw.replace(/\D/g, '');
+    // Убрать ведущие 7 или 8 — они идут как код страны
+    if (digits.startsWith('8')) digits = '7' + digits.slice(1);
+    if (!digits.startsWith('7')) digits = '7' + digits;
+    // Обрезать до 11 цифр (7 + 10)
+    digits = digits.slice(0, 11);
+    const d = digits.slice(1); // без кода страны
+    // Собрать маску
+    let out = '+7';
+    if (d.length > 0) out += ' (' + d.slice(0, 3);
+    if (d.length >= 3) out += ') ' + d.slice(3, 6);
+    if (d.length >= 6) out += '-' + d.slice(6, 8);
+    if (d.length >= 8) out += '-' + d.slice(8, 10);
+    this.value = out;
+    st.phone = out;
+    $('fPhoneErr').classList.remove('show');
+    updateNav();
+  });
+  $('fEmail').addEventListener('input', function () {
+    st.email = this.value.trim();
+    $('fEmailErr').classList.remove('show');
+  });
+
+  document.querySelectorAll('.method-btn[data-m]').forEach(b => {
+    b.addEventListener('click', () => {
+      st.method = b.dataset.m;
+      document.querySelectorAll('.method-btn[data-m]').forEach(x => x.classList.remove('sel'));
+      b.classList.add('sel');
+    });
+  });
+
+  /* ── Step 4 live consent ────────────────────────────────────── */
+  ['c1','c2','c3'].forEach(id => {
+    $(id).addEventListener('change', function () {
+      st[id] = this.checked;
+      updateNav();
+    });
+  });
+
+  /* ── File upload ────────────────────────────────────────────── */
+  const dropEl    = $('drop');
+  const fileInput = $('fileInput');
+  const fileList  = $('fileList');
+  const MAX_MB    = 20 * 1024 * 1024;
+  const MAX_N     = 10;
+
+  function fmtSize(b) {
+    return b < 1048576 ? Math.round(b / 1024) + ' КБ' : (b / 1048576).toFixed(1) + ' МБ';
+  }
+
+  function addFiles(list) {
+    Array.from(list).forEach(f => {
+      if (st.files.length >= MAX_N) { showToast(`Максимум ${MAX_N} файлов`); return; }
+      if (f.size > MAX_MB) { showToast(`«${f.name}» превышает 20 МБ`); return; }
+      if (st.files.find(x => x.name === f.name && x.size === f.size)) return;
+      st.files.push(f);
+    });
+    renderFiles();
+  }
+
+  function renderFiles() {
+    fileList.innerHTML = '';
+    st.files.forEach((f, i) => {
+      const row = document.createElement('div');
+      row.className = 'file-row';
+      row.innerHTML = `<span style="font-size:1rem">📄</span>
+        <span class="file-row__name">${f.name}</span>
+        <span class="file-row__size">${fmtSize(f.size)}</span>
+        <button type="button" class="file-row__del" data-i="${i}" title="Удалить">✕</button>`;
+      fileList.appendChild(row);
+    });
+    fileList.querySelectorAll('.file-row__del').forEach(b => {
+      b.addEventListener('click', () => { st.files.splice(+b.dataset.i, 1); renderFiles(); });
+    });
+  }
+
+  fileInput.addEventListener('change', () => { addFiles(fileInput.files); fileInput.value = ''; });
+  dropEl.addEventListener('dragover',  e => { e.preventDefault(); dropEl.classList.add('over'); });
+  dropEl.addEventListener('dragleave', () => dropEl.classList.remove('over'));
+  dropEl.addEventListener('drop', e => {
+    e.preventDefault();
+    dropEl.classList.remove('over');
+    addFiles(e.dataTransfer.files);
+  });
+
+  /* ── Step 2 textarea ────────────────────────────────────────── */
+  $('fDesc').addEventListener('input', function () { st.desc = this.value; });
+
+  /* ── Submit ─────────────────────────────────────────────────── */
+  function submitForm() {
+    collect(4);
+
+    btnNext.disabled = true;
+    btnNext.textContent = 'Отправка…';
+
+    const fd = new FormData();
+    fd.append('category_id',    st.catId);
+    fd.append('description',    st.desc);
+    fd.append('name',           st.name);
+    fd.append('phone',          st.phone);
+    fd.append('email',          st.email);
+    fd.append('contact_method', st.method);
+    fd.append('consent_ad',     st.c3 ? '1' : '0');
+    fd.append('utm',            JSON.stringify(st.utm));
+
+    st.files.forEach(f => fd.append('files[]', f));
+
+    fetch('submit.php', { method: 'POST', body: fd })
+      .then(r => r.json())
+      .then(data => {
+        if (data.ok) {
+          showSuccessScreen(data.request_id || '');
+          try { sessionStorage.removeItem('ved_app'); } catch {}
+        } else {
+          showToast(data.error || 'Ошибка при отправке. Пожалуйста, позвоните нам напрямую.');
+          btnNext.disabled = false;
+          btnNext.textContent = 'Отправить заявку';
+        }
+      })
+      .catch(() => {
+        showToast('Ошибка соединения. Пожалуйста, позвоните нам: +7 (3812) 22-000-9');
+        btnNext.disabled = false;
+        btnNext.textContent = 'Отправить заявку';
+      });
+  }
+
+  function showSuccessScreen(reqId) {
+    const cat = CATS.find(c => c.id === st.catId);
+    const methodMap = { phone: 'Звонок', whatsapp: 'WhatsApp', telegram: 'Telegram', email: 'E-mail' };
+
+    successId.textContent = reqId ? `Заявка № ${reqId}` : '';
+    successCard.innerHTML =
+      `<strong>Направление:</strong> ${cat ? cat.name : '—'}<br>` +
+      `<strong>Имя:</strong> ${st.name}<br>` +
+      `<strong>Телефон:</strong> ${st.phone}<br>` +
+      (st.email ? `<strong>E-mail:</strong> ${st.email}<br>` : '') +
+      `<strong>Способ связи:</strong> ${methodMap[st.method] || st.method}` +
+      (st.files.length ? `<br><strong>Файлов:</strong> ${st.files.length}` : '');
+
+    // Скрыть шаги и навигацию
+    document.querySelectorAll('.wizard__step').forEach(e => e.classList.remove('active'));
+    document.querySelector('.wizard__head').style.display = 'none';
+    wizFoot.style.display = 'none';
+    successEl.classList.add('show');
+  }
+
+  /* ── UTM ────────────────────────────────────────────────────── */
+  try {
+    const p = new URLSearchParams(location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(k => {
+      if (p.get(k)) st.utm[k] = p.get(k);
+    });
+  } catch {}
+
+  /* ── Init ───────────────────────────────────────────────────── */
+  renderCats();
+  showStep(st.step);
+
+})();
+</script>
+</body>
+</html>
