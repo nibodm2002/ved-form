@@ -1221,7 +1221,7 @@
         if (el) el.classList.add('active');
 
         if (n === 2) {
-          $('fDesc').value = st.desc;
+          // fDesc deleted
         }
         if (n === 3) {
           $('fName').value = st.name;
@@ -1241,7 +1241,7 @@
 
       /* ── Collect current step ───────────────────────────────────── */
       function collect(n) {
-        if (n === 2) { st.desc = $('fDesc').value; }
+        if (n === 2) { /* fDesc deleted */ }
         if (n === 3) {
           st.name = $('fName').value.trim();
           st.phone = $('fPhone').value.trim();
@@ -1396,7 +1396,7 @@
       });
 
       /* ── Step 2 textarea ────────────────────────────────────────── */
-      $('fDesc').addEventListener('input', function () { st.desc = this.value; });
+      // fDesc deleted
 
       /* ── Submit ─────────────────────────────────────────────────── */
       function submitForm() {
